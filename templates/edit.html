@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Edit profile{% endblock %}
+
+{% block content %}
+{% if pred !=" " %}
+<p>{{pred}}</p>
+{% endif %}
+    <div class="contact-form-wrapper">
+        
+        <div class="contact-form">
+            <div class="title">
+                Edit your profile
+            </div>
+            <br>
+            <form method="post" action="/update">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="email" class="required">Email ID</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                    <ion-icon name="mail-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <input type="email" class="form-control" id="text" name="email" value={{mail}} readonly>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="username" class="required">Username</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                    <ion-icon name="person-circle-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="text" name="username" value={{usr}} readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="firstName" class="required">First name</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                    <ion-icon name="person-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="text" name="fname" value={{fname}}>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lastName" class="required">Last name</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                    <ion-icon name="person-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="text" name="lname" value="{{lname}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="password" class="required">Gender</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                    <ion-icon name="transgender-outline"></ion-icon>
+                                </div>
+                            </div>
+                              <select name="gender" class="custom-select" id="inputGroupSelect01">
+                                <option selected>Choose...</option>
+                                {%if gender=='male'%}
+                                <option value="male" selected>male</option>
+                                <option value="female">female</option>
+                                {%else%}
+                                <option value="male">male</option>
+                                <option value="female" selected>female</option>
+                                {%endif%}
+                              </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="confirmPassword">Phone number</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                    <ion-icon name="call-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="text" name="phno" value="{{phno}}">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-dark" style="width:100%;"></ion-icon>Edit My Profile</button>
+            </form>
+            <br>
+        </div>
+    </div>
+{% endblock %}

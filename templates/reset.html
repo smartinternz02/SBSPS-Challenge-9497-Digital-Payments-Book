@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Password Reset{% endblock %}
+
+{% block content %}
+    <div class="contact-form-wrapper">
+        
+        <div class="contact-form">
+            <div class="title">
+                Enter New password
+            </div>
+            <br>
+            <form method="post" action="/done">
+                <div class="form-group">
+                    <label for="pname" class="required">Password</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <input type="password" class="form-control" id="text" name="password" placeholder="Enter new password" required>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-dark" style="width:100%;"></ion-icon>Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

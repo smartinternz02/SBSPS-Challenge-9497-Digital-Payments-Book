@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}FAQs{% endblock %}
+
+<style>
+    
+  </style>
+  {% block content %}
+  
+  <div class="accordion d-flex flex-column min-vh-100">
+    <h4 class="container" style="margin-top:2px;padding:12px;text-align:center">FAQs</h4>
+    <div class="accordion-item">
+      <h2 id="accordion-button-1" aria-expanded="false">
+        <span class="accordion-title">What are the normal business hours?</span>
+        <span class="icon" aria-hidden="true"></span>
+      </h2>
+      <div class="accordion-content" style="color:#636465">
+        <p>Monday to Friday 8:00 a.m. to 9:00 p.m.; Saturday and Sunday 7:00 a.m to 10:00 p.m.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 id="accordion-button-1" aria-expanded="false">
+        <span class="accordion-title">What products do you sale ?</span>
+        <span class="icon" aria-hidden="true"></span>
+      </h2>
+      <div class="accordion-content">
+        <p>We have a wide range of collection of products related to several industries such as farming,dairy and several processed food companies and we even deal with the consumer goods i.e inspite of selling grocery,we do sell products likes soaps,perfumes,floor cleaners etc.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 id="accordion-button-1" aria-expanded="false">
+        <span class="accordion-title">Is my data safe with Digital Payments Book ?</span>
+        <span class="icon" aria-hidden="true"></span>
+      </h2>
+      <div class="accordion-content">
+        <p>Yes. Only Store owner will see your information.Also we keep minimal data about you.
+  I will NEVER sell, rent, lease, whatever you call it, your information. Your information being your name, email, address, or anything you share with me. I 
+  take your privacy very seriously.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 id="accordion-button-1" aria-expanded="false">
+        <span class="accordion-title">What actually is the need of Digital Payments Book?</span>
+        <span class="icon" aria-hidden="true"></span>
+      </h2>
+      <div class="accordion-content">
+        <p>Tracking the expenses has become a part and parcel of everyone's life and you need a register for it.Instead of writing on a paper and losing the data,one can enter their purchases here and the data here is permanent for a period of time.<br>
+          Opt digital - Save Paper</p>
+      </div>
+    </div>
+    <!-- <div class="accordion-item">
+      <h2 id="accordion-button-1" aria-expanded="false">
+        <span class="accordion-title">Why do I need this?</span>
+        <span class="icon" aria-hidden="true"></span>
+      </h2>
+      <div class="accordion-content">
+        <p>Right now there is a connection between your name and your address that can be found by anybody with access to the internet.
+  There are people and organizations that want to harm law enforcement officers and their families. It's risky to expose your personal and private information 
+  to the world.
+  Our software helps you quickly submit opt-outs to the top people-search sites.
+  When you are deleted from these sites, this will break the connection between your name and your address so you can enjoy an extra layer of privacy. That's 
+  the goal.
+  Removing yourself from these sites may also reduce your chances of being a victim of identity theft as your full name, address, birthday, and email addresses 
+  are all exposed.</p>
+      </div>
+    </div> -->
+    {% endblock %}
+
+    <script>
+        const items = document.querySelectorAll(".accordion-item h2");
+        function toggleAccordion() {
+          const itemToggle = this.getAttribute('aria-expanded');
+          for (i = 0; i < items.length; i++) {
+            items[i].setAttribute('aria-expanded', 'false');
+          }
+          if (itemToggle == 'false') {
+            this.setAttribute('aria-expanded', 'true');
+          }
+        }
+        items.forEach(item => item.addEventListener('click', toggleAccordion));
+      </script>

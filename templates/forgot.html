@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Enter OTP{% endblock %}
+
+
+{% block content %}
+    <div class="contact-form-wrapper">
+        
+        <div class="contact-form">
+            <div class="title">
+                Enter OTP sent to your email
+            </div>
+            <br>
+            <form method="post" action="/reset">
+                <div class="form-group">
+                    <label for="pname" class="required">OTP</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                                <ion-icon name="timer-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="text" name="OTP" placeholder="Enter OTP" required>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-dark" style="width:100%;"></ion-icon>Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

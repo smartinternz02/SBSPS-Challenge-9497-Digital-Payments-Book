@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Product{% endblock %}
+
+
+{% block content %}
+{% if pred !=" " %}
+<p>{{pred}}</p>
+{% endif %}
+    <div class="contact-form-wrapper" style="padding:50px 0">
+        
+        <div class="contact-form">
+            <div class="title">
+                Edit Product info
+            </div>
+            <br>
+            <form method="post" action="/editpro">
+                    <div class="form-group">
+                        <label for="email" class="required">Product Name</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                    <ion-icon name="mail-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <input type="email" class="form-control" id="text" name="pname" value="{{pname}}" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="required">Price</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                    <ion-icon name="person-circle-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="text" name="price" value={{price}}>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName" class="required">Category</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                    <ion-icon name="person-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="text" name="category" value={{category}}>
+                        </div>
+                    </div>
+                    <br>
+                <button type="submit" class="btn btn-dark" style="width:100%;"></ion-icon>Update product</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

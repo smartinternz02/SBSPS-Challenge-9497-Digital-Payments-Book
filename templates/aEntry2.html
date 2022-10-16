@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Purchase Entry{% endblock %}
+
+{% block content %}
+<div class="container" style="padding:0 20%">
+  {%if cart!=" "%}
+  <!-- <p style="padding:12px 0;padding-bottom:0%;text-align:center;text-shadow:white">items added</p> -->
+  <table id="" class="table table-sm" style="box-shadow: 0 5px 10px rgba(0,0,0,.2);border-radius:5px;background:white;margin:10px">
+    <thead>
+      <tr>
+        <th>S.NO</th>
+        <th>PRODUCTS</th>
+        <th>NO. OF ITEMS</th>
+        <th>TOTAL PRICE</th>
+      </tr>
+    </thead>
+  <tbody>
+    {% for row in cart %}
+    <tr>
+      {% set outer_loop = loop %}
+      <td>
+      {{outer_loop.index}}
+      </td>
+      
+        {% for cell in row %}
+        <td>
+               {{ cell }}  
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+  
+  </table>
+  {%endif%}
+</div>
+    <div class="contact-form-wrapper" style="padding:50px 0">
+        
+        <div class="contact-form">
+          <div class="title">
+            Enter Purchase Details
+          </div>
+          <br>
+            <form name="f1" method="post" action="/asubmitted2">
+              <div class="form-group">
+                <label for="uname" class="required">Username</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text bg-dark">
+                          <ion-icon name="person-circle-outline"></ion-icon>
+                        </div>
+                    </div>
+                    {%if uname%}
+                        <input type="text" class="form-control" id="text" name="username" value={{uname}}>
+                    {%else%}
+                    <select name="username" class="selectpicker form-control" data-live-search="true" id="inputGroupSelect01">
+                        <!-- <option selected>Choose...</option> -->
+                        {%for row in userdata%}
+                        <option value="{{row[0]}}">{{row[0]}}</option>
+                        {%endfor%}
+                      </select>
+                    {%endif%}
+                </div>
+            </div>
+                <div class="form-group">
+                    <label for="pname" class="required">Product name</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                              <ion-icon name="fast-food-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <select name="gender" class="selectpicker form-control" data-live-search="true" id="inputGroupSelect01">
+                            <option selected>Choose...</option>
+                            {%for row in prod%}
+                            <option value="{{row[0]}}">{{row[0]}}</option>
+                            {%endfor%}
+                          </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="quantity" class="required">No of items</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                              <ion-icon name="cart-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <input type="number" class="form-control" id="password" name="quantity" placeholder="Enter quantity" required>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-dark" onClick="f1.action='/next'" style="width:100%;"></ion-icon>Add other product</button>
+                <br><br>
+                <a class="btn btn-dark" data-toggle="collapse" href="#purchase-card" role="button" aria-expanded="false" aria-controls="collapseExample" style="width:100%">
+                    Finish Purchase
+                  </a>
+                  <br><br>
+                  <div class="collapse" id="purchase-card">
+                    <div class="form-group">
+                        <label for="price" >Paid</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                  <ion-icon name="checkmark-done-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <select name="paid" class="selectpicker form-control" id="inputGroupSelect01">
+                                <option value="yes" selected>yes</option>
+                                <option value="no">no</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="transactionDate">Purchase Date</label>
+                      <input type="date" value={{date}} name="transactionDate" id="transactionDate" class="form-control">
+                  </div>
+                    <br>
+                    <button type="submit" class="btn btn-dark" style="width:100%;"></ion-icon>Submit</button>
+                  </div> 
+                  <br>
+            </form>
+            {%if special==" "%}
+            <a class="btn btn-dark" href="special" style="width:100%;">Add special purchase</a>
+            {%endif%}
+        </div>
+    </div>
+{% endblock %}

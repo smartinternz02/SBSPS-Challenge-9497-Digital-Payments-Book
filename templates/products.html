@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}Products{% endblock %}
+{%block head%}
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap4.min.js"></script>
+<link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
+<link rel="stylesheet" href="static/css/style.css">
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<style>
+  label {
+    display:flex; flex-direction: row; justify-content: center; align-items: center;
+  }
+  .custom-select{width:45px}
+  .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: none;
+    color: black!important;
+    border:none;
+    /*change the hover text color*/
+  }
+  
+  
+  /*below block of css for change style when active*/
+  
+  .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+    background: none;
+    color: black!important;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paging_simple_numbers{
+    min-width: 0.2em;
+    padding: 0.2em 1em !important
+}
+
+#DataTables_Table_0_paginate{
+  max-width:100%;padding:0 2em ;font-size:15px;
+}
+
+</style>
+{%endblock%}
+{% block content %}
+<p>{{count}}</p>
+ {%if usr=="Sakshit"%}
+ <div class="contact-form-wrapper" style="padding:50px;overflow:hidden">
+ 
+      <div class="contact-form" style="max-width:800px">
+  	<div class="title">List of products</div>
+    	{%if data==" "%}
+      <br>
+        	<p>No Products to show</p>
+    	{%else%}
+      <br>
+            <table id="" class="table table-sm table-striped table-bordered dt-responsive display" style="box-shadow: 0 5px 10px rgba(0,0,0,.2)">
+              <thead>
+                <tr>
+                  <th>S.NO</th>
+                  <th>PRODUCT</th>
+                  <th>PRICE</th>
+                  <th>CATEGORY</th>
+                  <th><ion-icon name="create-outline" class="delete"></ion-icon></th>
+                  <th><ion-icon name="trash-outline" class="delete"></ion-icon></th>
+                </tr>
+              </thead>
+            <tbody>
+              {% for row in data %}
+              <tr>
+                {% set outer_loop = loop %}
+                {%set x=row[0]%}
+                {%set y=row[1]%}
+                {%set z=row[2]%}
+                <td>
+                  {{outer_loop.index}}
+                </td>
+                  {% for cell in row %}
+                  <td>
+                      {{cell}}
+                  </td>
+                  {% endfor %}
+                  <td><a href="/updatepro/{{row[0]}}"><ion-icon name="create-outline" class="delete"></ion-icon></a></td>
+                  <td><a href="/deletepro/{{row[0]}}" class="confirmation"><ion-icon name="trash-outline" class="delete"></ion-icon></a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+          
+                <center>
+            <a class="btn btn-dark" data-toggle="collapse" href="#purchase-card" role="button" aria-expanded="false" aria-controls="collapseExample" style="align-items:center">
+              Add new Product 
+            </a>
+          </center>
+            <div class="collapse" id="purchase-card">
+            <div class="contact-form-wrapper" style="padding:20px 0">
+              
+            <div class="contact-form">
+              <div class="title">
+                Enter Product Details
+              </div>
+              <br>
+                <form method="post" action="/asubmitted">
+                    <div class="form-group">
+                        <label for="pname" class="required">Product name</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                  <ion-icon name="fast-food-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="text" name="pname" placeholder="Enter product name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="required">Price per unit</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                  <ion-icon name="pricetags-outline"></ion-icon>
+                                </div>
+                              </div>
+                              <input type="number" class="form-control" id="text" name="price" placeholder="Enter Price per unit" required>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="balance" class="required">Category</label>
+                              <div class="input-group">
+                                  <div class="input-group-prepend">
+                                      <div class="input-group-text bg-dark">
+                                          <ion-icon name="grid-outline"></ion-icon>
+                                      </div>
+                                  </div>
+                                  <input type="text" class="form-control" placeholder="Enter Category of product" name="cat" id="balance" required>
+                              </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-dark" style="width:100%;"></ion-icon>Submit</button>
+                </form>
+            </div>
+              </div>
+              </div>
+        
+      </div>
+		
+          	
+
+    {%endif%}
+    </div>
+        </div>
+      </div>
+    </div> 
+    {%else%}
+    <div class="contact-form-wrapper" style="padding:50px;overflow:hidden">
+ 
+      <div class="contact-form" style="max-width:1400px">
+  	<div class="title">List of products</div>
+    	{%if data==" "%}
+      <br>
+        	<p>No Products to show</p>
+    	{%else%}
+    <br>
+  <table id="" class="table table-sm table-striped table-bordered display" style="box-shadow: 0 5px 10px rgba(0,0,0,.2)">
+    <thead>
+      <tr>
+        <th>S.NO</th>
+        <th>PRODUCT</th>
+        <th>PRICE</th>
+        <th>CATEGORY</th>
+      </tr>
+    </thead>
+  <tbody>
+    {% for row in data %}
+    <tr>
+      {% set outer_loop = loop %}
+      <td>
+      {{outer_loop.index}}
+      </td>
+        {% for cell in row %}
+        <td>
+          {{cell}}
+  
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    </div>
+    {%endif%}
+    {%endif%}
+
+{% endblock %}
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
+  
+  </script>

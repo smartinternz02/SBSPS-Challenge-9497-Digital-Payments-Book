@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Users{% endblock %}
+{%block head%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<style>
+label {
+  display:flex; flex-direction: row; justify-content: center; align-items: center;
+}
+.custom-select{width:45px}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: none;
+  color: black!important;
+  border:none;
+  /*change the hover text color*/
+}
+
+
+/*below block of css for change style when active*/
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: none;
+  color: black!important;
+}
+</style>
+{%endblock%}
+{% block content %}
+<div class="contact-form-wrapper" >
+  <div class="contact-form" style="max-width:1000px">
+    <div class="title">
+      Customers
+    </div>
+    <br>
+    {%if data==" "%}
+        <p style="padding:12px">No Users to show</p>
+    {%else%}
+<table id="" class="table table-striped table-bordered dt-responsive display" style="width:100%">
+  <thead>
+    <tr>
+      <th>S.NO</th>
+      <th>NAME</th>
+      <th>HISTORY</th>
+      <th><ion-icon name="trash-outline" class="delete"></ion-icon></th>
+    </tr>
+  </thead>
+<tbody>
+  {% for row in data %}
+  <tr>
+    {% set outer_loop = loop %}
+      {% for cell in row %}
+      <td>
+
+          {% if loop.index0 == 0 %}
+            {{outer_loop.index}}
+          {% elif loop.index0 !=2 %}
+              {{cell}}
+          {% else %}
+              <a href='ahistory/{{ row[0] }}'>View purchase history</a>
+          {% endif %}
+
+      </td>
+      {% endfor %}
+      <td><a href="/deleteuser/{{row[0]}}" class="confirmation"><ion-icon name="trash-outline" class="delete"></ion-icon></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+  {%endif%}
+ <br>
+  
+  <form action="/sendmail">
+    <button type="submit" class="btn btn-dark"></ion-icon>Send Alerts to customers with dues</button>
+  </form>
+  </div>
+  </div> 
+
+ {% endblock %}

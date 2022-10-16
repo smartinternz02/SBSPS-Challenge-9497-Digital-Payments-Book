@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Special Purchase{% endblock %}
+
+{% block content %}
+{% if pred !=" " %}
+<p>{{pred}}</p>
+{% endif %}
+    <div class="contact-form-wrapper">
+        
+        <div class="contact-form">
+            <div class="title">
+                Enter Special Purchase
+            </div>
+            <br>
+            <form method="post" action="/purchase">
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="pname" class="required">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                              <ion-icon name="person-circle-outline"></ion-icon>
+                            </div>
+                        </div>
+                        {%if uname%}
+                            <input type="text" class="form-control" id="text" name="username" value={{uname}}>
+                        {%else%}
+                        <select name="username" class="selectpicker form-control" data-live-search="true" id="inputGroupSelect01">
+                            <!-- <option selected>Choose...</option> -->
+                            {%for row in userdata%}
+                            <option value="{{row[0]}}">{{row[0]}}</option>
+                            {%endfor%}
+                          </select>
+                        {%endif%}
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="pname" class="required">Purchase name</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                              <ion-icon name="fast-food-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="text" name="pname" placeholder="Enter product name" required>
+                    </div>
+                </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="price" class="required">No of items</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                  <ion-icon name="cart-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="password" name="quantity" placeholder="Enter quantity" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="price" class="required">Total Price</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                  <ion-icon name="pricetags-outline"></ion-icon>
+                                </div>
+                              </div>
+                              <input type="text" class="form-control" id="text" name="price" placeholder="Enter Price per unit" required>
+                            </div>
+                            </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="price" class="required" >Paid</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text bg-dark">
+                                  <ion-icon name="checkmark-done-outline"></ion-icon>
+                                </div>
+                            </div>
+                            <select name="paid" class="selectpicker form-control" id="inputGroupSelect01" required>
+                                <option value="yes" selected>yes</option>
+                                <option value="no">no</option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="transactionDate" class="required">Purchase Date</label>
+                        <input type="date" value={{date}} name="transactionDate" id="transactionDate" class="form-control" required>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-dark" style="width:100%;"></ion-icon>Submit</button>
+            </form>
+            <br>
+        </div>
+    </div>
+{% endblock %}

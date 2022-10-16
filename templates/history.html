@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% block title %}
+{%if pending!=" "%}
+Pending Payments
+{%else%}
+Payment History
+{%endif%}
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<style>
+label {
+  display:flex; flex-direction: row; justify-content: center; align-items: center;
+}
+.custom-select{width:45px}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: none;
+  color: black!important;
+  border:none;
+  /*change the hover text color*/
+}
+
+
+/*below block of css for change style when active*/
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: none;
+  color: black!important;
+}
+</style>
+    {% endblock %}
+{% block content %}
+    {%if data==" "%}
+    <div class="container">
+        {%if pending==" "%}
+        <center><p style="padding:12px">No Purchases to show</p></center>
+        {%elif month%}
+        <center><p style="padding:12px">No Purchases to show</p></center>
+        {%else%}
+        <center><p style="padding:12px">No Pending payments to show</p></center>
+        {%endif%}
+    </div>
+    {%elif usern!="Sakshit"%}
+    <div class="contact-form-wrapper" style="padding:50px;overflow:hidden">
+      <div class="contact-form" style="max-width:1000px;">
+        
+        <div class="title">
+          {%if pending==" "%}
+          Purchase History
+          {%elif month%}
+          Purchase history of {{month}},{{year}}
+          {%else%}
+          Pending Payments
+          {%endif%}
+        </div>
+        <br>
+        <div class="dtable-container">
+          <table id="" class="table table-striped table-bordered display" cellpadding="0" cellspacing="0"  style="box-shadow: 0 5px 10px rgba(0,0,0,.2)">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>DATE</th>
+                <th style="width:300px">PRODUCTS</th>
+                <th>NO. OF ITEMS</th>
+                <th>TOTAL PRICE</th>
+                <th>PAID</th>
+              </tr>
+            </thead>
+          <tbody>
+            {% for row in data %}
+            <tr>
+                {% for cell in row %}
+                
+                {% if loop.index0 == 2%}      
+                <td><div class="breadth" style="height:50px;overflow:auto">{{cell}}</div></td>
+                {% else %}
+                <td> {{ cell }}  </td>
+                {% endif %}
+        
+                {% endfor %}
+            </tr>
+            {% endfor %}
+          </tbody>
+          
+          </table>
+          </div>
+    </div>
+    </div>
+  {%elif pending!=" "%}
+  <div class="contact-form-wrapper" style="padding:50px;overflow:hidden">
+    <div class="contact-form" style="max-width:1000px;">
+      <div class="title">
+        Pending Payments of {{usr}}
+      </div>
+      <br>
+      <div class="dtable-container">
+        <table id="" class="table table-striped table-bordered display" cellpadding="0" cellspacing="0"  style="box-shadow: 0 5px 10px rgba(0,0,0,.2)">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>DATE</th>
+              <th style="width:300px">PRODUCTS</th>
+              <th>NO. OF ITEMS</th>
+              <th>TOTAL PRICE</th>
+              <th>Remove if paid</th>
+            </tr>
+          </thead>
+        <tbody>
+          {% for row in data %}
+          <tr>
+              {% for cell in row %}
+              {% if loop.index0 == 5 %}
+                {{pass_loop}}
+              {% elif loop.index0 == 2%}      
+              <td><div class="breadth" style="height:50px;overflow:auto">{{cell}}</div></td>
+              {% else %}
+              <td> {{ cell }}  </td>
+              {% endif %}
+      
+              {% endfor %}
+              <td><center><a href="/updatepaid/{{row[0]}}" style="align-items:center" class="confirmation"><ion-icon name="trash-outline" class="delete"></ion-icon></a></center></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        
+        </table>
+        </div>
+  </div>
+  </div>
+  
+  {%else%}
+  <div class="contact-form-wrapper" style="padding:50px;overflow:hidden">
+    <div class="contact-form" style="max-width:1000px;">
+      <div class="title">
+        Purchase History of {{usr}}
+      </div>
+      <br>
+      <div class="dtable-container">
+        <table id="" class="table table-striped table-bordered display" cellpadding="0" cellspacing="0"  style="box-shadow: 0 5px 10px rgba(0,0,0,.2)">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>DATE</th>
+              <th style="width:300px">PRODUCTS</th>
+              <th>NO. OF ITEMS</th>
+              <th>TOTAL PRICE</th>
+              <th>PAID</th>
+            </tr>
+          </thead>
+        <tbody>
+          {% for row in data %}
+          <tr>
+              {% for cell in row %}
+                    
+              {% if loop.index0 == 2 %}
+              <td><div class="breadth" style="height:50px;overflow:auto">{{cell}}</div></td>
+              {% else %}
+              <td> {{ cell }}  </td>
+              {% endif %}
+      
+              {% endfor %}
+       
+          </tr>
+          {% endfor %}
+        </tbody>
+        
+        </table>
+        </div>
+        {%if usern=="Sakshit" and pending==" "%}
+        
+        {%if data!=" "%}
+        <center>
+        <a class="btn btn-dark" href="../apending/{{usr}}" role="button">
+          View pending payments
+        </a>
+        <a class="btn btn-dark" href="../aEntry2" role="button">
+            Add new Purchase 
+          </a>
+
+        </center>
+        {%endif%}
+
+  {%endif%}
+  </div>
+  </div>
+  
+
+  {%endif%}
+ 
+ 
+
+
+    
+{% endblock %}
+<!-- <script>
+$(document).ready(function () {
+  $('#dtBasicExample').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+  
+
+});
+
+
+</script> -->

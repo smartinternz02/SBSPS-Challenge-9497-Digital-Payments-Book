@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Contact us{% endblock %}
+
+{% block content %}
+<!-- <div class="container">
+<br>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item"><h3>Contact us </h3></li>
+    <li class="list-group-item">IBM Departmental Stores <br>3rd Street<br>19th Avenue<br>London<br>Ph.no 997646299</li>
+  </ul> -->
+  <div class="contact-form-wrapper">
+    <div class="contact-form">
+    <div class="title" style="padding-bottom:0%">
+        <center>Contact us</center>
+        <p class="description">  Feel free to contact us for any query</p>
+    </div>
+        <form method="post" action="/feedback">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email" class="required">Email ID</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                                <ion-icon name="mail-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <input type="email" class="form-control" id="text" name="email" value={{mail}} readonly>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="username" class="required">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                                <ion-icon name="person-circle-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="text" name="username" value={{usr}} readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label for="firstName" class="required">First name</label>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text bg-dark">
+                              <ion-icon name="person-outline"></ion-icon>
+                          </div>
+                      </div>
+                      <input type="text" class="form-control" id="text" name="fname" value={{fname}} readonly>
+                  </div>
+              </div>
+              <div class="form-group col-md-6">
+                  <label for="lastName" class="required">Last name</label>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text bg-dark">
+                              <ion-icon name="person-outline"></ion-icon>
+                          </div>
+                      </div>
+                      <input type="text" class="form-control" id="text" name="lname" value="{{lname}}" readonly>
+                  </div>
+              </div>
+          </div>
+            <div class="form-row md-6">
+              <label for="firstName" class="required">Subject</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                              <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="text" name="subject" placeholder="Specify the issue in a line">
+                    </div>
+            </div>
+            <br>
+            <div class="form-row">
+                    <label for="firstName" class="required">Message</label>
+                    <div class="input-group">
+                        <textarea type="text" class="form-control" id="text" name="message" rows="5" placeholder="Enter your query"></textarea>
+                    </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-dark" style="width:100%;"></ion-icon>Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

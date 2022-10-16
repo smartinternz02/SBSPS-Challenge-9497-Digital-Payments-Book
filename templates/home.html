@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+  <center>
+  {% if resp =="back !!" %}
+  <br><h3 > Welcome back!!</h3>
+  {% else %}
+  <br><h3 > Welcome {{user}}</h3>
+  {% endif %}
+  </center>
+  </div>
+<br>
+<div class="container-fluid" >
+<div class="row" style="padding:0 8%;">
+  <div class="col-sm-4" style="display: flex; justify-content: center;">
+<div class="card" style="width: 23rem;">
+  <img src="../static/images/product.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">View the products list</h5>
+    <p class="card-text">Look at the wide range of products we sale and get a view on the pricing and the categories of products.</p>
+    <a href="product" class="btn btn-primary" style="background-color:#343a40;border-color:#343a40">Click here</a>
+  </div>
+</div>
+</div>
+<br>
+<div class="col-sm-4" style="display: flex; justify-content: center">
+  <div class="card" style="width: 23rem;">
+    <img src="../static/images/pending.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Pending payments</h5>
+      <p class="card-text">Track your dues here,Clear the dues before 1 month from the purchase date to avoid alerts from our side.</p>
+      <a href="pending" class="btn btn-primary" style="background-color:#343a40;border-color:#343a40">Click here</a>
+    </div>
+  </div>
+  </div>
+<br>
+<div class="col-sm-4" style="display: flex; justify-content: center">
+<div class="card" style="width: 23rem;">
+  <img src="../static/images/history.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">View purchase history</h5>
+    <p class="card-text">You can track your total purchases here.It helps in tracking your expenses that you have spent at our store.</p>
+    <a href="history" class="btn btn-primary" style="background-color:#343a40;border-color:#343a40">Click here</a>
+  </div>
+</div>
+</div>
+</div>
+<br>
+<hr>
+<br>
+<div class="wrapper1">
+  <div class="container1">
+    <i class="fa fa-line-chart" ></i>
+    <span class="text1" style="font-size:2em;">{{month}} Stats</span>
+  </div>
+  <div class="container1">
+    <i class="fa fa-shopping-cart"></i>
+    {%if prod==0%}
+    <span class="text1" style="font-size:30px">0</span>
+    {%else%}
+    <span class="num" data-val="{{prod}}">000</span>
+    {%endif%}
+    <span class="text1">Purchases</span>
+  </div>
+  <div class="container1" >
+    <i class="fa fa-inr"></i>
+    {%if expenses==0%}
+    <span class="text1" style="font-size:30px">0</span>
+    {%else%}
+    <span class="num" data-val="{{expenses}}">0000</span>
+    {%endif%}
+    <span class="text1">Expenditure</span>
+  </div>
+  <div class="container1">
+    <i class="fa fa-list-ul"></i>
+    {%if count==0%}
+    <span class="text1" style="font-size:30px">0</span>
+    {%else%}
+    <span class="num" data-val="{{count}}">000</span>
+    {%endif%}
+    <span class="text1">Items Bought</span>
+  </div>
+</div>
+<br>
+<hr>
+<br>
+</div>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Home{% endblock %}
+{% block content %}
+{% if pred !=" " %}
+<p>{{pred}}</p>
+{% endif %}
+    <div align="center">
+    {% if resp =="back !!" %}
+    <br><h3 > Welcome back!!</h3>
+    {% else %}
+    <br><h3 > Welcome {{user}}</h3>
+    {% endif %}
+    </div>
+    </div>
+    <br>
+    <br>
+    <div class="container-fluid">
+    <div class="row" style="padding:0 8%;">
+      <div class="col-sm-4 " style="display: flex; justify-content: center;">
+    <div class="card " style="width: 23rem; height:fit-content;">
+      <img src="../static/images/product.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">View the products list</h5>
+        <p class="card-text">Details regarding the pricing and the categories of products.You can delete or update the products</p>
+        <a href="product" class="btn btn-primary" style="background-color:#343a40;border-color:#343a40">Click here</a>
+      </div>
+    </div>
+    </div>
+    <br>
+    <div class="col-sm-4" style="display: flex; justify-content: center">
+    <div class="card" style="width: 23rem;">
+      <img src="../static/images/purchase2.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Add new purchase</h5>
+        <p class="card-text">Enter a purchase regarding to a particular customer.You can get the total price of purchase at the end</p>
+        <a href="aEntry2" class="btn btn-primary" style="background-color:#343a40;border-color:#343a40">Click here</a>
+      </div>
+    </div>
+    </div>
+    <br>
+    <div class="col-sm-4" style="display: flex; justify-content: center">
+    <div class="card" style="width: 23rem;height:fit-content;">
+      <img src="../static/images/customers.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">View your customers</h5>
+        <p class="card-text">Track your customers,view their pending payments and send alerts to the ones having dues for longer time</p>
+        <a href="users" class="btn btn-primary" style="background-color:#343a40;border-color:#343a40">Click here</a>
+      </div>
+    </div>
+    </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="wrapper1">
+      <div class="container1">
+        <i class="fa fa-line-chart" ></i>
+        <span class="text1" style="font-size:2em;">Stats</span>
+      </div>
+      <div class="container1">
+        <i class="fa fa-shopping-cart"></i>
+        {%if purs==0%}
+        <span class="text1" style="font-size:30px">0</span>
+        {%else%}
+        <span class="num" data-val="{{purs}}">000</span>
+        {%endif%}
+        <span class="text1">Purchases</span>
+      </div>
+      <div class="container1" >
+        <i class="fa-solid fa-face-smile-beam"></i>
+        {%if cust==0%}
+        <span class="text1" style="font-size:30px">0</span>
+        {%else%}
+        <span class="num" data-val="{{cust}}">000</span>
+        {%endif%}
+        <span class="text1">Happy Customers</span>
+      </div>
+      <div class="container1">
+        <i class="fa fa-star"></i>
+        {%if prod==0%}
+        <span class="text1" style="font-size:30px">0</span>
+        {%else%}
+        <span class="num" data-val="{{prod}}">000</span>
+        {%endif%}
+        <span class="text1">Products</span>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    </div>
+
+    
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Change password{% endblock %}
+{% block content %}
+    <div class="contact-form-wrapper">
+        
+        <div class="contact-form">
+            <div class="title">
+                Change password
+            </div>
+            <br>
+            <form method="post" action="/changePassword">
+                <div class="form-group">
+                    <label for="password" class="required">Password</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                                <ion-icon name="key-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <input type="password" id="password" name="password" required placeholder="Enter your current password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword" class="required">New password</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <input type="password" id="newPassword" name="newPassword" required placeholder="Enter your new password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="required">Confirm password</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-dark">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm password" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-dark" style="width:100%;">Change</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
