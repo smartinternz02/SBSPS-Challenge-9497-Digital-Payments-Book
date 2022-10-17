@@ -404,7 +404,7 @@ def asubmitted2():
             if pname=='Choose...':
                 flash("Please select product name", category="error")
                 return redirect(url_for('aEntry2'))
-            in_sql="INSERT INTO PAYMENT VALUES(?,?,?)"
+            in_sql="INSERT INTO PAYMENTS VALUES(?,?,?)"
             pre_stmt=ibm_db.prepare(conn,in_sql)
             ibm_db.bind_param(pre_stmt,1,pname)
             ibm_db.bind_param(pre_stmt,3,session["pid"])
@@ -444,7 +444,7 @@ def asubmitted2():
             if pname=='Choose...':
                 flash("Please select product name", category="error")
                 return redirect(url_for('aEntry2'))
-            in_sql="INSERT INTO PAYMENT VALUES(?,?,?)"
+            in_sql="INSERT INTO PAYMENTS VALUES(?,?,?)"
             pre_stmt=ibm_db.prepare(conn,in_sql)
             ibm_db.bind_param(pre_stmt,1,pname)
             ibm_db.bind_param(pre_stmt,3,session["pid"])
@@ -509,7 +509,7 @@ def next():
         if pname=='Choose...':
             flash("Please select product name", category="error")
             return redirect(url_for('aEntry2'))
-        in_sql="INSERT INTO PAYMENT VALUES(?,?,?)"
+        in_sql="INSERT INTO PAYMENTS VALUES(?,?,?)"
         pre_stmt=ibm_db.prepare(conn,in_sql)
         ibm_db.bind_param(pre_stmt,1,pname)
         ibm_db.bind_param(pre_stmt,3,session["pid"])
@@ -538,7 +538,7 @@ def next():
         if pname=='Choose...':
                 flash("Please select product name", category="error")
                 return redirect(url_for('amain'))
-        in_sql="INSERT INTO PAYMENT VALUES(?,?,?)"
+        in_sql="INSERT INTO PAYMENTS VALUES(?,?,?)"
         pre_stmt=ibm_db.prepare(conn,in_sql)
         ibm_db.bind_param(pre_stmt,1,pname)
         ibm_db.bind_param(pre_stmt,3,session["pid"])
@@ -629,7 +629,7 @@ def history():
             count = ibm_db.fetch_assoc(prep1_stmt)
         product=[]
         for i in pids:
-            sel_sql="SELECT PNAME,COUNT FROM TRS01834.PAYMENT WHERE PID=?"
+            sel_sql="SELECT PNAME,COUNT FROM TRS01834.PAYMENTS WHERE PID=?"
             pre_stmt=ibm_db.prepare(conn,sel_sql)
             ibm_db.bind_param(pre_stmt,1,i)
             ibm_db.execute(pre_stmt)
@@ -691,7 +691,7 @@ def pending():
         print(hist)
         product=[]
         for i in pids:
-            sel_sql="SELECT PNAME,COUNT FROM TRS01834.PAYMENT WHERE PID=?"
+            sel_sql="SELECT PNAME,COUNT FROM TRS01834.PAYMENTS WHERE PID=?"
             pre_stmt=ibm_db.prepare(conn,sel_sql)
             ibm_db.bind_param(pre_stmt,1,i)
             ibm_db.execute(pre_stmt)
@@ -756,7 +756,7 @@ def ahistory(usr):
             count = ibm_db.fetch_assoc(prep1_stmt)
         product=[]
         for i in pids:
-            sel_sql="SELECT PNAME,COUNT FROM TRS01834.PAYMENT WHERE PID=?"
+            sel_sql="SELECT PNAME,COUNT FROM TRS01834.PAYMENTS WHERE PID=?"
             pre_stmt=ibm_db.prepare(conn,sel_sql)
             ibm_db.bind_param(pre_stmt,1,i)
             ibm_db.execute(pre_stmt)
@@ -819,7 +819,7 @@ def apending(usr):
         print(hist)
         product=[]
         for i in pids:
-            sel_sql="SELECT PNAME,COUNT FROM TRS01834.PAYMENT WHERE PID=?"
+            sel_sql="SELECT PNAME,COUNT FROM TRS01834.PAYMENTS WHERE PID=?"
             pre_stmt=ibm_db.prepare(conn,sel_sql)
             ibm_db.bind_param(pre_stmt,1,i)
             ibm_db.execute(pre_stmt)
@@ -1449,7 +1449,7 @@ def mhistory(month):
         print(hist)
         product=[]
         for i in pids:
-            sel_sql="SELECT PNAME,COUNT FROM TRS01834.PAYMENT WHERE PID=?"
+            sel_sql="SELECT PNAME,COUNT FROM TRS01834.PAYMENTS WHERE PID=?"
             pre_stmt=ibm_db.prepare(conn,sel_sql)
             ibm_db.bind_param(pre_stmt,1,i)
             ibm_db.execute(pre_stmt)
