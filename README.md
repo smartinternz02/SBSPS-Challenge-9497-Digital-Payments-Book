@@ -8,4 +8,5 @@ Project Live Link : https://payments-book-digital-sakshit319-dev.apps.sandbox.x8
 To check admin functionality,use following credentials
 
 Username : Sakshit
+
 password : 1234
