@@ -1028,7 +1028,7 @@ def sendmail():
             today=str(today)
             date1=str(count["DATE"])
             res = (dt.strptime(today, "%Y-%m-%d") - dt.strptime(date1, "%Y-%m-%d")).days
-            if res>=0:
+            if res>=60:
                 x+=1
                 select_sq="SELECT EMAILID FROM TRS01834.USER where USERNAME=?"
                 prep_stmt = ibm_db.prepare(conn, select_sq)
@@ -1038,7 +1038,8 @@ def sendmail():
                 receiver=mail["EMAILID"]
                 email_receiver=receiver
                 subject="Payment Reminder"
-                body=f"""Hi {count["USERNAME"]}\n\nI hope you are well.\n\nI just wanted to drop you a quick note to remind you that Rs.{count["PRICE"]} in respect of our invoice {count["PID"]} is due for payment on {count["DATE"]}.\n\nIt would be really grateful if you could confirm that everything is on track for payment.\n\nBest regards\nTeam Digital Payments Book"""
+                body=f"""Hi {count["USERNAME"]}\n\nI hope you are well.\n\nIt's been 30 days since you haven't paid us for your purchase.The amount of Rs.{count["PRICE"]} in respect of our invoice {count["PID"]} is due for payment on {count["DATE"]}.\n\nThis is the last call from us.You must pay the amount as soon as possible.It would be really grateful if you could confirm that everything is on track for payment.\n\nBest regards\nTeam Digital Payments Book"""
+                
                 em=EmailMessage()
                 em['From']=email_sender
                 em['To']=email_receiver
@@ -1048,7 +1049,7 @@ def sendmail():
                 with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
                     smtp.login(email_sender,email_password)
                     smtp.sendmail(email_sender,email_receiver,em.as_string())
-            if res>=30:
+            elif res>=30:
                 x+=1
                 select_sq="SELECT EMAILID FROM TRS01834.USER where USERNAME=?"
                 prep_stmt = ibm_db.prepare(conn, select_sq)
@@ -1068,7 +1069,7 @@ def sendmail():
                 with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
                     smtp.login(email_sender,email_password)
                     smtp.sendmail(email_sender,email_receiver,em.as_string())
-            if res>=60:
+            elif res>=0:
                 x+=1
                 select_sq="SELECT EMAILID FROM TRS01834.USER where USERNAME=?"
                 prep_stmt = ibm_db.prepare(conn, select_sq)
@@ -1078,7 +1079,7 @@ def sendmail():
                 receiver=mail["EMAILID"]
                 email_receiver=receiver
                 subject="Payment Reminder"
-                body=f"""Hi {count["USERNAME"]}\n\nI hope you are well.\n\nIt's been 30 days since you haven't paid us for your purchase.The amount of Rs.{count["PRICE"]} in respect of our invoice {count["PID"]} is due for payment on {count["DATE"]}.\n\nThis is the last call from us.You must pay the amount as soon as possible.It would be really grateful if you could confirm that everything is on track for payment.\n\nBest regards\nTeam Digital Payments Book"""
+                body=f"""Hi {count["USERNAME"]}\n\nI hope you are well.\n\nI just wanted to drop you a quick note to remind you that Rs.{count["PRICE"]} in respect of our invoice {count["PID"]} is due for payment on {count["DATE"]}.\n\nIt would be really grateful if you could confirm that everything is on track for payment.\n\nBest regards\nTeam Digital Payments Book"""
                 em=EmailMessage()
                 em['From']=email_sender
                 em['To']=email_receiver
@@ -1504,7 +1505,7 @@ def logout():
         return redirect(url_for('login'))
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=4444, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
 
 
 
