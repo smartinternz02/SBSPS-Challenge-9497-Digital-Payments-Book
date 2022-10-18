@@ -1158,21 +1158,24 @@ def forgot():
         ibm_db.bind_param(prep_stmt, 1,usern)
         ibm_db.execute(prep_stmt)
         mail = ibm_db.fetch_assoc(prep_stmt)
-        receiver=mail["EMAILID"]
-        email_receiver = receiver
-        subject="OTP for Password Reset"
-        body=f"Hello {usern}\n\nYour one time password for password reset is {code}\nPlease do not share your OTP with anyone\n\nThank you\nTeam Digital Payments Book"
-        em=EmailMessage()
-        em['From']=email_sender
-        em['To']=email_receiver
-        em['subject']=subject
-        em.set_content(body)
-        context=ssl.create_default_context()
-        with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
-            smtp.login(email_sender,email_password)
-            smtp.sendmail(email_sender,email_receiver,em.as_string())
-        return render_template("forgot.html")
-
+        if mail !=False:
+            receiver=mail["EMAILID"]
+            email_receiver = receiver
+            subject="OTP for Password Reset"
+            body=f"Hello {usern}\n\nYour one time password for password reset is {code}\nPlease do not share your OTP with anyone\n\nThank you\nTeam Digital Payments Book"
+            em=EmailMessage()
+            em['From']=email_sender
+            em['To']=email_receiver
+            em['subject']=subject
+            em.set_content(body)
+            context=ssl.create_default_context()
+            with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
+                smtp.login(email_sender,email_password)
+                smtp.sendmail(email_sender,email_receiver,em.as_string())
+            return render_template("forgot.html")
+        else:
+            flash("Invalid Username",category="error")
+            return render_template("forgot.html")
 @app.route('/reset',methods=['POST','GET'])
 def reset():
     if "user" in session:
