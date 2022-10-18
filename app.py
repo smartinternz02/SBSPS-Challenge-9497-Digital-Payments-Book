@@ -1175,7 +1175,7 @@ def forgot():
             return render_template("forgot.html")
         else:
             flash("Invalid Username",category="error")
-            return render_template("forgot.html")
+            return redirect(url_for('password')
 @app.route('/reset',methods=['POST','GET'])
 def reset():
     if "user" in session:
