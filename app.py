@@ -602,7 +602,7 @@ def purchase():
         ibm_db.execute(prep1_stmt)
         pids=ibm_db.fetch_assoc(prep1_stmt)
         pid=pids["PID"]
-        insert_sql="INSERT INTO PAYMENT VALUES (?,?,?)"
+        insert_sql="INSERT INTO PAYMENTS VALUES (?,?,?)"
         prep1_stmt = ibm_db.prepare(conn, insert_sql)
         ibm_db.bind_param(prep1_stmt, 1,pname)
         ibm_db.bind_param(prep1_stmt, 2,num)
