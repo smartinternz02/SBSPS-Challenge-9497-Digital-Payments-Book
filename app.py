@@ -1028,9 +1028,9 @@ def sendmail():
             today=str(today)
             date1=str(count["DATE"])
             res = (dt.strptime(today, "%Y-%m-%d") - dt.strptime(date1, "%Y-%m-%d")).days
-            if res>=60:
+            if res>=30:
                 x+=1
-                select_sq="SELECT EMAILID FROM TRS01834.USER where USERNAME=?"
+                select_sq="SELECT EMAILID,PHNNO FROM TRS01834.USER where USERNAME=?"
                 prep_stmt = ibm_db.prepare(conn, select_sq)
                 ibm_db.bind_param(prep_stmt, 1,count["USERNAME"])
                 ibm_db.execute(prep_stmt)
@@ -1049,7 +1049,11 @@ def sendmail():
                 with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
                     smtp.login(email_sender,email_password)
                     smtp.sendmail(email_sender,email_receiver,em.as_string())
-            elif res>=30:
+                url="https://www.fast2sms.com/dev/bulk?authorization=9YZvrCR1ywaVu7P2SfGls03F4OdJTkqiNpxg8meUKhMjIocz6bDLQa65t0Ai1ehXW38Sfv2R4G7Ejkul&sender_id=FSTSMS&message="+body+"&language=english&route=p&numbers="+str(mail["PHNNO"])
+                result=requests.request("GET",url)
+                print(result)
+                
+            elif res>=15:
                 x+=1
                 select_sq="SELECT EMAILID FROM TRS01834.USER where USERNAME=?"
                 prep_stmt = ibm_db.prepare(conn, select_sq)
@@ -1059,7 +1063,7 @@ def sendmail():
                 receiver=mail["EMAILID"]
                 email_receiver=receiver
                 subject="Payment Reminder"
-                body=f"""Hi {count["USERNAME"]}\n\nI hope you are well.\n\nIt's been 30 days since you haven't paid us for your purchase.The amount of Rs.{count["PRICE"]} in respect of our invoice {count["PID"]} is due for payment on {count["DATE"]}.\n\nYou need to pay the amount immediately.It would be really grateful if you could confirm that everything is on track for payment.\n\nBest regards\nTeam Digital Payments Book"""
+                body=f"""Hi {count["USERNAME"]}\n\nI hope you are well.\n\nIt's been 15 days since you haven't paid us for your purchase.The amount of Rs.{count["PRICE"]} in respect of our invoice {count["PID"]} is due for payment on {count["DATE"]}.\n\nYou need to pay the amount immediately.It would be really grateful if you could confirm that everything is on track for payment.\n\nBest regards\nTeam Digital Payments Book"""
                 em=EmailMessage()
                 em['From']=email_sender
                 em['To']=email_receiver
@@ -1069,6 +1073,8 @@ def sendmail():
                 with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
                     smtp.login(email_sender,email_password)
                     smtp.sendmail(email_sender,email_receiver,em.as_string())
+                url="https://www.fast2sms.com/dev/bulk?authorization=9YZvrCR1ywaVu7P2SfGls03F4OdJTkqiNpxg8meUKhMjIocz6bDLQa65t0Ai1ehXW38Sfv2R4G7Ejkul&sender_id=FSTSMS&message="+body+"&language=english&route=p&numbers="+str(mail["PHNNO"])
+                result=requests.request("GET",url)
             elif res>=0:
                 x+=1
                 select_sq="SELECT EMAILID FROM TRS01834.USER where USERNAME=?"
@@ -1089,7 +1095,8 @@ def sendmail():
                 with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
                     smtp.login(email_sender,email_password)
                     smtp.sendmail(email_sender,email_receiver,em.as_string())
-            
+                url="https://www.fast2sms.com/dev/bulk?authorization=9YZvrCR1ywaVu7P2SfGls03F4OdJTkqiNpxg8meUKhMjIocz6bDLQa65t0Ai1ehXW38Sfv2R4G7Ejkul&sender_id=FSTSMS&message="+body+"&language=english&route=p&numbers="+str(mail["PHNNO"])
+                result=requests.request("GET",url)
             count = ibm_db.fetch_assoc(prep1_stmt)
         if x>0:
             flash("Mails are sent to the customers having dues", category="success")
