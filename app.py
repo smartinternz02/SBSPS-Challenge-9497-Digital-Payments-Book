@@ -1049,9 +1049,9 @@ def sendmail():
                 with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
                     smtp.login(email_sender,email_password)
                     smtp.sendmail(email_sender,email_receiver,em.as_string())
-                if mail["PHNNO"]:
-                    url="https://www.fast2sms.com/dev/bulk?authorization=9YZvrCR1ywaVu7P2SfGls03F4OdJTkqiNpxg8meUKhMjIocz6bDLQa65t0Ai1ehXW38Sfv2R4G7Ejkul&sender_id=FSTSMS&message="+body+"&language=english&route=p&numbers="+str(mail["PHNNO"])
-                    result=requests.request("GET",url)
+                #if mail["PHNNO"]:
+                 #   url="https://www.fast2sms.com/dev/bulk?authorization=9YZvrCR1ywaVu7P2SfGls03F4OdJTkqiNpxg8meUKhMjIocz6bDLQa65t0Ai1ehXW38Sfv2R4G7Ejkul&sender_id=FSTSMS&message="+body+"&language=english&route=p&numbers="+str(mail["PHNNO"])
+                  #  result=requests.request("GET",url)
                 print(result)
                 
             elif res>=15:
@@ -1074,9 +1074,9 @@ def sendmail():
                 with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
                     smtp.login(email_sender,email_password)
                     smtp.sendmail(email_sender,email_receiver,em.as_string())
-                if mail["PHNNO"]:
-                    url="https://www.fast2sms.com/dev/bulk?authorization=9YZvrCR1ywaVu7P2SfGls03F4OdJTkqiNpxg8meUKhMjIocz6bDLQa65t0Ai1ehXW38Sfv2R4G7Ejkul&sender_id=FSTSMS&message="+body+"&language=english&route=p&numbers="+str(mail["PHNNO"])
-                    result=requests.request("GET",url)
+                #if mail["PHNNO"]:
+                 #   url="https://www.fast2sms.com/dev/bulk?authorization=9YZvrCR1ywaVu7P2SfGls03F4OdJTkqiNpxg8meUKhMjIocz6bDLQa65t0Ai1ehXW38Sfv2R4G7Ejkul&sender_id=FSTSMS&message="+body+"&language=english&route=p&numbers="+str(mail["PHNNO"])
+                  #  result=requests.request("GET",url)
             elif res>=0:
                 x+=1
                 select_sq="SELECT EMAILID,PHNNO FROM TRS01834.USER where USERNAME=?"
@@ -1097,9 +1097,9 @@ def sendmail():
                 with smtplib.SMTP_SSL('smtp.gmail.com',465,context=context) as smtp:
                     smtp.login(email_sender,email_password)
                     smtp.sendmail(email_sender,email_receiver,em.as_string())
-                if mail["PHNNO"]:
-                    url="https://www.fast2sms.com/dev/bulk?authorization=9YZvrCR1ywaVu7P2SfGls03F4OdJTkqiNpxg8meUKhMjIocz6bDLQa65t0Ai1ehXW38Sfv2R4G7Ejkul&sender_id=FSTSMS&message="+body+"&language=english&route=p&numbers="+str(mail["PHNNO"])
-                    result=requests.request("GET",url)
+                #if mail["PHNNO"]:
+                 #   url="https://www.fast2sms.com/dev/bulk?authorization=9YZvrCR1ywaVu7P2SfGls03F4OdJTkqiNpxg8meUKhMjIocz6bDLQa65t0Ai1ehXW38Sfv2R4G7Ejkul&sender_id=FSTSMS&message="+body+"&language=english&route=p&numbers="+str(mail["PHNNO"])
+                  #  result=requests.request("GET",url)
             count = ibm_db.fetch_assoc(prep1_stmt)
         if x>0:
             flash("Mails are sent to the customers having dues", category="success")
